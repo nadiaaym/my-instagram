@@ -1,21 +1,26 @@
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
+
+app.use(cors());
+
 const mongoose = require('mongoose');
+
 var Schema = mongoose.Schema;
 // const MongoClient = require('mongodb').MongoClient;
 
 app.get('/', (req, res) => {
-  res.send('Hi!');
+  res.send('Hi from server!');
 });
+
 
 app.listen(3000, () => {
   console.log('Listening');
-
 })
 
-
 async function connect() {
+app.use(cors());
   await mongoose.connect('mongodb://localhost:27017/instagram', {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -24,16 +29,14 @@ async function connect() {
   const Post = mongoose.model('Post', new Schema({ content: String }));
 
   const cont = new Post({content: "2"});
-  cont.save(function (err) {
-    if (err) return handleError(err);
-  });
+  // cont.save(function (err) {
+  //   if (err) return handleError(err);
+  // });
 
-  console.log(await Post.find({}).lean());
+  // console.log(await Post.find({}).lean());
 }
 
 connect();
-
-
 
 //   const db = MongoClient.connect('mongodb://localhost:27017/instagram');
 //   db.collection("posts").find({}).toArray(function(err, result) {
