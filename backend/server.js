@@ -1,26 +1,24 @@
 const express = require('express');
 const cors = require('cors');
-
+const path = require('path');
 const app = express();
+const mongoose = require('mongoose');
 
 app.use(cors());
 
-const mongoose = require('mongoose');
+// const baseDir = path.resolve(__dirname, '../');
+
+// app.use(express.static(path.join(baseDir, 'frontend/build')))
 
 var Schema = mongoose.Schema;
 // const MongoClient = require('mongodb').MongoClient;
-
-app.get('/', (req, res) => {
-  res.send('Hi from server!');
-});
-
 
 app.listen(3000, () => {
   console.log('Listening');
 })
 
 async function connect() {
-app.use(cors());
+  app.use(cors());
   await mongoose.connect('mongodb://localhost:27017/instagram', {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -28,30 +26,25 @@ app.use(cors());
 
   const Post = mongoose.model('Post', new Schema({ content: String }));
 
-  const cont = new Post({content: "2"});
+  // const cont = new Post({content: "2"});
   // cont.save(function (err) {
   //   if (err) return handleError(err);
   // });
 
-  // console.log(await Post.find({}).lean());
+  // app.get('/', (req, res) => {
+  //   res.sendFile(path.join(baseDir, 'frontend', 'build', 'index.html'));
+  // });
+
+
+  app.get('/api/post', (req, res) => {
+    Post.find({}, function (err, result) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(result)
+      }
+    });
+  });
 }
 
 connect();
-
-//   const db = MongoClient.connect('mongodb://localhost:27017/instagram');
-//   db.collection("posts").find({}).toArray(function(err, result) {
-//     if (err) throw err;
-//     console.log(result);
-//     db.close();
-//   });
-
-
-//   , function(err, db) {
-//     if (err) throw err;
-//     var dbo = db.db("instagram");
-//     dbo.collection("posts").find({}).toArray(function(err, result) {
-//       if (err) throw err;
-//       console.log(result);
-//       db.close();
-//     });
-//   });
