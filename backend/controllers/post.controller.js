@@ -22,10 +22,6 @@ async function connect() {
 }
 connect();
 
-Post.updateMany({}, { $rename: { content: 'message' } }, function (err, blocks) {
-    if (err) { throw err; }
-});
-
 router.get('/', (req, res) => {
     Post.find({}, function (err, result) {
         if (err) {
@@ -39,9 +35,11 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     Post.collection.insert(req.body)
     console.log('inserted new document')
-})
+});
 
-
+router.put('/:id', (req, res) => {
+    Post.collection.replaceOne({"_id" : req.params}, {"_id": res.params})
+});
 
 function testPost() {
     const cont = new Post({
