@@ -17,7 +17,7 @@ function App() {
         {
           data.map((post,index) => {
             return (
-              <li key={index}>{post.content}</li>
+              <li key={index}>{post.message}</li>
             )
           })
         }

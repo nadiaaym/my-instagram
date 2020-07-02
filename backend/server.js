@@ -3,14 +3,18 @@ const cors = require('cors');
 const path = require('path');
 const app = express();
 const mongoose = require('mongoose');
-const postController = require('./controllers/post.controller.js') 
+const bodyParser = require('body-parser');
+const postController = require('./controllers/post.controller.js');
 
 app.use(cors());
-app.use('/api/post', postController);
 
 const baseDir = path.resolve(__dirname, '../');
 
+app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(express.static(path.join(baseDir, 'frontend/build')))
+app.use('/api/post', postController);
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(baseDir, 'frontend', 'build', 'index.html'));

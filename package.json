@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/nadiaaym/my-instagram/issues"
   },
-  "homepage": "https://github.com/nadiaaym/my-instagram#readme"
+  "homepage": "https://github.com/nadiaaym/my-instagram#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0"
+  }
 }
