@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const postController = require('./controllers/post.controller.js');
 
+const PORT = 9000;
+
 app.use(cors());
 
 const baseDir = path.resolve(__dirname, '../');
@@ -23,7 +25,7 @@ app.get('/', (req, res) => {
 
 // const MongoClient = require('mongodb').MongoClient;
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log('Listening');
 })
 

@@ -37,8 +37,9 @@ router.post('/', (req, res) => {
     console.log('inserted new document')
 });
 
-router.put('/:id', (req, res) => {
-    Post.collection.replaceOne({"_id" : req.params}, {"_id": res.params})
+router.put('/:id', async (req, res) => {
+    const doc = await Post.replaceOne({ "_id": req.params.id }, req.body)
+    res.status(201).send(doc)
 });
 
 function testPost() {
