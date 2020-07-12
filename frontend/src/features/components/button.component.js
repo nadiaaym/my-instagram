@@ -13,7 +13,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-    text: 'nadiush hayafa',
+    text: 'nadiush hayafa'
 };
 
 export default Button;

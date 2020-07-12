@@ -1,38 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Form from './features/components/form.component';
+import CreatePostForm from './features/components/form.component';
 import Button from './features/components/button.component';
 
 function App() {
-  const [data, setData] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   const callServer = (url, options) => {
     return fetch(url, options)
-      .then(response => response.json())
-      .then(setData)
+      .then(response => response.json());
   }
-  // useEffect(() => {
-    const fetchPost = () =>
-      callServer('http://localhost:3000/api/post', { method: 'GET' })
-        .then(newData => { })
-  // };, []);
 
-  const creatPost = (body) => {
-    callServer('http://localhost:3000/api/post', { method: 'POST', body })
-      .then(newData => { })
+  const fetchPost = () =>
+    callServer('http://localhost:3000/api/post', { method: 'GET' })
+      .then(setPosts)
+
+  const createPost = (body) => {
+    const headers = new Headers()
+    headers.set('Content-Type', 'application/json') 
+    callServer('http://localhost:3000/api/post', { method: 'POST', body: JSON.stringify(body), headers })
+      .then(fetchPost)
   };
 
-  console.log(data)
+  //  TODO: post the data to the server
+  const onCreatePost = (e) => {
+    createPost({message: e})
+  }
+
   return (
     <div className="App">
-      <Form onChange={(e) => console.log(e.target.value)}/>
-      <Button x={() => creatPost(setData)} text='create post' />
+      <CreatePostForm onCreatePost={onCreatePost} />
+      {/* <Button x={() => createPost(setPosts)} text='create post' /> */}
       <Button x={() => fetchPost()} text='get posts' />
       <Button x={() => console.log("home clicked")} text='home' />
       <ul>
         {
-          data.map((post, index) => {
+          posts.map((post, index) => {
             return (
               <li key={index}>{post.message}</li>
             )
