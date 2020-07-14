@@ -1,60 +1,50 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const mongoose = require('mongoose');
 const { Router } = require('express');
-const { ObjectId } = require('mongodb');
 const router = express.Router();
 
-var Schema = mongoose.Schema;
+// mock data
+const posts = require('../mock/post.mock.json');
 
-const Post = mongoose.model('Post', new Schema({
-    content: String,
-    message: String,
-    date: Date,
-}));
+const postsCopy = [...posts];
 
-async function connect() {
-    await mongoose.connect('mongodb://localhost:27017/instagram', {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    });
-}
-connect();
-
+// get all posts
 router.get('/', (req, res) => {
-    Post.find({}, function (err, result) {
-        if (err) {
-            res.send(err);
-        } else {
-            res.send(result)
-        }
-    });
+    res.status(200).send(postsCopy);
 });
 
-router.post('/', (req, res) => {
-    Post.collection.insert(req.body)
-    console.log('inserted new document')
+// get post by id
+router.get('/:id', (req, res) => {
+    res.status(200).send(postsCopy.find(p => p._id === req.params.id));
 });
 
-router.put('/:id', async (req, res) => {
-    const doc = await Post.replaceOne({ "_id": req.params.id }, req.body)
-    res.status(201).send(doc)
-});
-
-function testPost() {
-    const cont = new Post({
-        message: "8",
-        date: new Date()
-    });
-
-    cont.save(function (err) {
-        if (err) return handleError(err);
-    });
+const getPostIndex = id => {
+    return postsCopy.findIndex(p => p._id === id);
 }
 
-// testPost();
+// Delete a post by id
+router.delete('/:id', (req, res) => {
+    const index = getPostIndex(req.params.id);
+    if (index > -1) {
+        postsCopy.splice(index, 1);
+    }
+    res.status(204).send('deleted');
+});
 
+// Update a post
+router.put('/:id', (req, res) => {
+    const index = getPostIndex(req.params.id);
+    if (index > -1) {
+        postsCopy[index] = req.body;
+    }
+    res.status(204).send('updated');
+});
 
+// create a new post
+router.post('/', (req, res) => {
+   postsCopy.push(req.body);
+   res.status(201).send();
+});
 
 module.exports = router;

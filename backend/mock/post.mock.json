@@ -1,0 +1,17 @@
+[
+    {
+        "message": "this is a message",
+        "date": "2020-07-13T11:49:33.713Z",
+        "_id": "uniq-uuid"
+    },
+    {
+        "message": "this is another message",
+        "date": "2020-07-13T10:49:33.713Z",
+        "_id": "uniq-uuid1"
+    },
+    {
+        "message": "this is a new message",
+        "date": "2020-07-10T11:49:33.713Z",
+        "_id": "uniq-uuid2"
+    }
+]
