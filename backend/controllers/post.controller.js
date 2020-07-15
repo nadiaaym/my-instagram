@@ -44,7 +44,7 @@ router.put('/:id', (req, res) => {
 // create a new post
 router.post('/', (req, res) => {
    postsCopy.push(req.body);
-   res.status(201).send();
+   res.status(201).send({});
 });
 
 module.exports = router;
