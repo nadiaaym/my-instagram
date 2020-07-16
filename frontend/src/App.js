@@ -3,10 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import CreatePostForm from './features/components/form.component';
 import Button from './features/components/button.component';
-<<<<<<< HEAD
-=======
 import RenderPostList from './features/components/post.list.component';
->>>>>>> post list seperated
 
 function App() {
   const [posts, setPosts] = useState([]);
