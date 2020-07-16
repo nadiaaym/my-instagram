@@ -3,6 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 import CreatePostForm from './features/components/form.component';
 import Button from './features/components/button.component';
+<<<<<<< HEAD
+=======
+import RenderPostList from './features/components/post.list.component';
+>>>>>>> post list seperated
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -23,26 +27,16 @@ function App() {
       .then(fetchPost)
   };
 
-  //  TODO: post the data to the server
   const onCreatePost = (e) => {
-    createPost({message: e})
+    createPost({ message: e })
   }
 
   return (
     <div className="App">
       <CreatePostForm onCreatePost={onCreatePost} />
-      {/* <Button x={() => createPost(setPosts)} text='create post' /> */}
-      <Button x={() => fetchPost()} text='get posts' />
+      <Button x={fetchPost} text='get posts' />
       <Button x={() => console.log("home clicked")} text='home' />
-      <ul>
-        {
-          posts.map((post, index) => {
-            return (
-              <li key={index}>{post.message}</li>
-            )
-          })
-        }
-      </ul>
+      <RenderPostList posts={posts} />
     </div>
   );
 }

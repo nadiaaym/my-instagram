@@ -18,7 +18,7 @@ const CreatePostForm = (props) => {
                     value={input}
                     onChange={e => setInput(e.target.value)}
                 />
-                <input type='submit' value='create post'/>
+                <input type='submit' value='create post' />
             </form>
         </div>
     )
