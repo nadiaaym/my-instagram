@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const postController = require('./controllers/post.controller.js');
 
-const PORT = 9000;
+const PORT = 3000;
 
 app.use(cors());
 

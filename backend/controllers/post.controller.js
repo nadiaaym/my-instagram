@@ -2,7 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const { Router } = require('express');
-const router = express.Router();
+const { v1: uuid } = require('uuid');
+
+const router = Router();
 
 // mock data
 const posts = require('../mock/post.mock.json');
@@ -43,8 +45,8 @@ router.put('/:id', (req, res) => {
 
 // create a new post
 router.post('/', (req, res) => {
-   postsCopy.push(req.body);
-   res.status(201).send({});
+    postsCopy.push({ ...req.body, id: uuid() });
+    res.status(201).send({});
 });
 
 module.exports = router;
