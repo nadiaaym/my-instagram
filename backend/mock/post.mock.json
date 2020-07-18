@@ -2,16 +2,19 @@
     {
         "message": "this is a message",
         "date": "2020-07-13T11:49:33.713Z",
-        "_id": "uniq-uuid"
+        "_id": "uniq-uuid",
+        "imgId": "img1"
     },
     {
         "message": "this is another message",
         "date": "2020-07-13T10:49:33.713Z",
-        "_id": "uniq-uuid1"
+        "_id": "uniq-uuid1",
+        "imgId": "img2"
     },
     {
         "message": "this is a new message",
         "date": "2020-07-10T11:49:33.713Z",
-        "_id": "uniq-uuid2"
+        "_id": "uniq-uuid2",
+        "imgId": "img1"
     }
 ]
