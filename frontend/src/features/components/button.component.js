@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 const Button = (props) => {
     return (
         <button onClick={props.x}>{props.text}</button>
