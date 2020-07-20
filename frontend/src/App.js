@@ -4,7 +4,8 @@ import './App.css';
 import CreatePostForm from './features/components/form.component';
 import Button from './features/components/button.component';
 import RenderPostList from './features/components/post.list.component';
-import Images from './features/components/image.list.component';
+import ImageList from './features/components/image.list.component';
+import Card from './features/components/card.component';
 
 
 function App() {
@@ -36,15 +37,13 @@ function App() {
       .then(fetchPost)
   };
 
-  const onCreatePost = (e) => {
-    createPost({ message: e })
+  const onCreatePost = (e, imgId) => {
+    createPost({ message: e, imgId})
   }
 
   return (
     <div className="App">
-      {/* <Images imageList={images}></Images> */}
-      <Images imageList={images} />
-      <CreatePostForm onCreatePost={onCreatePost} />
+      <ImageList imageList={images} posts={posts} onCreatePost={onCreatePost} />
       <Button x={() => console.log("home clicked")} text='home' />
       <RenderPostList posts={posts} />
     </div>
