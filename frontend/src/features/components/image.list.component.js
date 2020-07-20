@@ -1,12 +1,17 @@
 import React from 'react';
+import Card from './card.component';
 
-const Images = (props) => {
+const ImageList = (props) => {
+    const getPostsByImgId = (imgId) => {
+        return props.posts.filter((p) => p.imgId === imgId)
+    }
+
     return (
         <div> {
             props.imageList.map(
                 (image) => {
                     return (
-                        <img key={image.id} src={image.url} />
+                        <Card key={image.id} image={image} posts={getPostsByImgId(image.id)} onCreatePost={props.onCreatePost}/>
                     )
                 }
             )
@@ -15,4 +20,4 @@ const Images = (props) => {
     )
 }
 
-export default Images;
+export default ImageList;

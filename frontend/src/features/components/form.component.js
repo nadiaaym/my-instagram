@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
 const CreatePostForm = (props) => {
-
     const [input, setInput] = useState('');
-    const onSubmitush = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
-        props.onCreatePost(input)
-
+        props.onCreatePost(input, props.image.id )
     }
 
     return (
         <div>
-            <form onSubmit={onSubmitush}>
-                <h1>message</h1>
+            <form onSubmit={onSubmit}>
                 <input
                     autoFocus
                     value={input}
