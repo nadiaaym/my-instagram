@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './card.component';
+import CreatePostForm from './form.component';
 
 const ImageList = (props) => {
     const getPostsByImgId = (imgId) => {
@@ -11,8 +12,12 @@ const ImageList = (props) => {
             props.imageList.map(
                 (image) => {
                     return (
-                        <Card key={image.id} image={image} posts={getPostsByImgId(image.id)} onCreatePost={props.onCreatePost}/>
-                    ) 
+                        <Card key={image.id} 
+                        image={image} 
+                        posts={getPostsByImgId(image.id)} 
+                        onCreatePost={props.onCreatePost}
+                        />
+                    )
                 }
             )
         }

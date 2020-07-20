@@ -5,7 +5,6 @@ import CreatePostForm from './features/components/form.component';
 import Button from './features/components/button.component';
 import RenderPostList from './features/components/post.list.component';
 import ImageList from './features/components/image.list.component';
-import Card from './features/components/card.component';
 
 
 function App() {
@@ -39,7 +38,7 @@ function App() {
 
   const onCreatePost = (e, imgId) => {
     createPost({ message: e, imgId})
-  }
+  };
 
   return (
     <div className="App">
